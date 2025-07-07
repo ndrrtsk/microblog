@@ -1,0 +1,148 @@
+2025-06-22 14:55:24,113 ERROR: Exception on /force_error [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 105, in force_error
+    return 1 / 0  # Це спричинить ZeroDivisionError
+           ~~^~~
+ZeroDivisionError: division by zero
+2025-06-22 15:03:04,393 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-22 15:03:24,765 ERROR: Exception on /force_error [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 105, in force_error
+    return 1 / 0  # Це спричинить ZeroDivisionError
+           ~~^~~
+ZeroDivisionError: division by zero
+2025-06-22 15:03:26,366 ERROR: Exception on /force_error [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 105, in force_error
+    return 1 / 0  # Це спричинить ZeroDivisionError
+           ~~^~~
+ZeroDivisionError: division by zero
+2025-06-29 10:36:05,805 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 10:36:32,345 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 10:36:41,959 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 11:47:39,583 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 11:49:22,648 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 11:50:07,553 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 11:51:16,959 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 11:53:19,805 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 12:08:00,792 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 12:09:35,486 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 23:53:23,693 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
+2025-06-29 23:53:31,409 ERROR: Exception on / [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Python\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 18, in index
+    if form.validate_on_submit():
+       ~~~~~~~~~~~~~~~~~~~~~~~^^
+TypeError: FlaskForm.validate_on_submit() missing 1 required positional argument: 'self'
+2025-06-29 23:53:38,238 ERROR: Exception on /index [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Python\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 18, in index
+    if form.validate_on_submit():
+       ~~~~~~~~~~~~~~~~~~~~~~~^^
+TypeError: FlaskForm.validate_on_submit() missing 1 required positional argument: 'self'
+2025-06-29 23:53:42,777 ERROR: Exception on /index [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Python\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 18, in index
+    if form.validate_on_submit():
+       ~~~~~~~~~~~~~~~~~~~~~~~^^
+TypeError: FlaskForm.validate_on_submit() missing 1 required positional argument: 'self'
+2025-06-29 23:53:47,857 ERROR: Exception on /index [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Python\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 18, in index
+    if form.validate_on_submit():
+       ~~~~~~~~~~~~~~~~~~~~~~~^^
+TypeError: FlaskForm.validate_on_submit() missing 1 required positional argument: 'self'
+2025-06-29 23:53:49,955 ERROR: Exception on /explore [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Python\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 151, in explore
+    posts = db.session.scalars(query),all()
+                                      ~~~^^
+TypeError: all() takes exactly one argument (0 given)
+2025-06-29 23:54:09,030 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:43]
