@@ -1,4 +1,4 @@
-2025-06-30 15:11:52,147 ERROR: Exception on /reset_password_request [POST] [in C:\Python\Lib\site-packages\flask\app.py:875]
+2025-07-14 23:48:16,698 ERROR: Exception on /search [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
 Traceback (most recent call last):
   File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -9,53 +9,46 @@ Traceback (most recent call last):
   File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "C:\LP\microblog\app\routes.py", line 176, in reset_password_request
-    send_password_reset_email(user)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "C:\LP\microblog\app\email.py", line 14, in send_password_reset_email
-    send_mail("[Microblog] Reset your Password",
-    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        sender=app.config["MAIL_USERNAME"],
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        recipients=[user.email],
+  File "C:\Python\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\main\routes.py", line 150, in search
+    posts,total=Post.search(g.search_form.q.data, page,current_app.config["POSTS_PER_PAGE"])
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\models.py", line 106, in search
+    ids,total = query_ind(cls.__tablename__, expression, page, per_page)
+                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\search.py", line 20, in query_ind
+    search = current_app.elasticsearch.search(
+        index=index,
+        query ={'multi_match':{"query":query, 'fields':['*']}},
+        from_=(page-1)*per_page, size=per_page)
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\utils.py", line 415, in wrapped
+    return api(*args, **kwargs)
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\__init__.py", line 4916, in search
+    return self.perform_request(  # type: ignore[return-value]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "POST",
+        ^^^^^^^
+    ...<5 lines>...
+        path_parts=__path_parts,
         ^^^^^^^^^^^^^^^^^^^^^^^^
-        text_body=render_template('email/reset_password.txt',user=user,token=token),
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        html_body=render_template('email/reset_password.html',user=user, token=token))
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\LP\microblog\app\email.py", line 9, in send_mail
-    mail.send(msg)
-    ~~~~~~~~~^^^^^
-  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 539, in send
-    with self.connect() as connection:
-         ~~~~~~~~~~~~^^
-  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 127, in __enter__
-    self.host = self.configure_host()
-                ~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 144, in configure_host
-    host = smtplib.SMTP(self.mail.server, self.mail.port)
-  File "C:\Python\Lib\smtplib.py", line 255, in __init__
-    (code, msg) = self.connect(host, port)
-                  ~~~~~~~~~~~~^^^^^^^^^^^^
-  File "C:\Python\Lib\smtplib.py", line 341, in connect
-    self.sock = self._get_socket(host, port, self.timeout)
-                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\smtplib.py", line 312, in _get_socket
-    return socket.create_connection((host, port), timeout,
-           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-                                    self.source_address)
-                                    ^^^^^^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\socket.py", line 864, in create_connection
-    raise exceptions[0]
-  File "C:\Python\Lib\socket.py", line 849, in create_connection
-    sock.connect(sa)
-    ~~~~~~~~~~~~^^^^
-ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
-2025-07-06 12:25:38,042 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:45]
-2025-07-06 12:27:28,950 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:45]
-2025-07-06 12:39:18,630 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:44]
-2025-07-06 12:40:52,195 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:44]
-2025-07-06 12:41:25,290 ERROR: Exception on /reset_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNldF9wYXNzd29yZCI6NSwiZXhwIjoxNzUxNzk5MDYxLjg3NDkwNjh9.3JZkdoqDTRDUOws3xn9-g1IaRb_EnfjGuUdGdx63Il4 [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+    )
+    ^
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\_base.py", line 271, in perform_request
+    response = self._perform_request(
+        method,
+    ...<4 lines>...
+        otel_span=otel_span,
+    )
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\_base.py", line 351, in _perform_request
+    raise HTTP_EXCEPTIONS.get(meta.status, ApiError)(
+        message=message, meta=meta, body=resp_body
+    )
+elasticsearch.NotFoundError: NotFoundError(404, 'index_not_found_exception', 'no such index [post]', post, index_or_alias)
+2025-07-14 23:49:12,236 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:81]
+2025-07-14 23:49:33,479 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:81]
+2025-07-14 23:49:41,824 ERROR: Exception on /search [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
 Traceback (most recent call last):
   File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -66,32 +59,44 @@ Traceback (most recent call last):
   File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "C:\LP\microblog\app\routes.py", line 185, in reset_password
-    if current_user.is_suthenticated:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'AnonymousUserMixin' object has no attribute 'is_suthenticated'. Did you mean: 'is_authenticated'?
-2025-07-06 12:42:07,310 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:44]
-2025-07-06 13:07:31,611 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:44]
-2025-07-06 13:19:55,052 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:44]
-2025-07-06 13:24:21,396 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:44]
-2025-07-06 13:34:51,492 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:46]
-2025-07-06 14:18:30,762 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 14:36:02,957 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 14:48:01,174 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 14:52:22,387 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 14:55:59,005 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 15:01:57,347 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 15:02:16,904 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 15:02:29,947 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 15:02:39,374 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 15:03:37,891 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 15:04:57,870 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-06 15:05:09,870 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-07 16:05:32,731 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-07 16:05:40,104 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-07 16:21:43,180 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-07 16:41:25,611 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:53]
-2025-07-07 16:41:28,762 ERROR: Exception on /login [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+  File "C:\Python\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\main\routes.py", line 150, in search
+    posts,total=Post.search(g.search_form.q.data, page,current_app.config["POSTS_PER_PAGE"])
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\models.py", line 106, in search
+    ids,total = query_ind(cls.__tablename__, expression, page, per_page)
+                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\search.py", line 20, in query_ind
+    search = current_app.elasticsearch.search(
+        index=index,
+        query ={'multi_match':{"query":query, 'fields':['*']}},
+        from_=(page-1)*per_page, size=per_page)
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\utils.py", line 415, in wrapped
+    return api(*args, **kwargs)
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\__init__.py", line 4916, in search
+    return self.perform_request(  # type: ignore[return-value]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "POST",
+        ^^^^^^^
+    ...<5 lines>...
+        path_parts=__path_parts,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\_base.py", line 271, in perform_request
+    response = self._perform_request(
+        method,
+    ...<4 lines>...
+        otel_span=otel_span,
+    )
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\_base.py", line 351, in _perform_request
+    raise HTTP_EXCEPTIONS.get(meta.status, ApiError)(
+        message=message, meta=meta, body=resp_body
+    )
+elasticsearch.NotFoundError: NotFoundError(404, 'index_not_found_exception', 'no such index [post]', post, index_or_alias)
+2025-07-14 23:51:39,039 ERROR: Exception on /search [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
 Traceback (most recent call last):
   File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -102,24 +107,42 @@ Traceback (most recent call last):
   File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "C:\LP\microblog\app\routes.py", line 52, in login
-    return render_template("login.html", title =_("Sign in"), form=form)
-  File "C:\Python\Lib\site-packages\flask\templating.py", line 149, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-  File "C:\Python\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
-    return self._load_template(name, globals)
-           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-  File "C:\Python\Lib\site-packages\jinja2\loaders.py", line 126, in load
-    source, filename, uptodate = self.get_source(environment, name)
-                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\site-packages\flask\templating.py", line 65, in get_source
-    return self._get_source_fast(environment, template)
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: login.html
+  File "C:\Python\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\main\routes.py", line 150, in search
+    posts,total=Post.search(g.search_form.q.data, page,current_app.config["POSTS_PER_PAGE"])
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\models.py", line 106, in search
+    ids,total = query_ind(cls.__tablename__, expression, page, per_page)
+                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\search.py", line 20, in query_ind
+    search = current_app.elasticsearch.search(
+        index=index,
+        query ={'multi_match':{"query":query, 'fields':['*']}},
+        from_=(page-1)*per_page, size=per_page)
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\utils.py", line 415, in wrapped
+    return api(*args, **kwargs)
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\__init__.py", line 4916, in search
+    return self.perform_request(  # type: ignore[return-value]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "POST",
+        ^^^^^^^
+    ...<5 lines>...
+        path_parts=__path_parts,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\_base.py", line 271, in perform_request
+    response = self._perform_request(
+        method,
+    ...<4 lines>...
+        otel_span=otel_span,
+    )
+  File "C:\Python\Lib\site-packages\elasticsearch\_sync\client\_base.py", line 351, in _perform_request
+    raise HTTP_EXCEPTIONS.get(meta.status, ApiError)(
+        message=message, meta=meta, body=resp_body
+    )
+elasticsearch.NotFoundError: NotFoundError(404, 'index_not_found_exception', 'no such index [post]', post, index_or_alias)
+2025-07-14 23:53:21,538 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:81]
+2025-07-14 23:54:03,018 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:81]
