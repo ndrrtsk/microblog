@@ -1,0 +1,161 @@
+2025-06-30 14:59:27,394 ERROR: Exception on /reset_password_request [POST] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 176, in reset_password_request
+    send_password_reset_email(user)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\LP\microblog\app\email.py", line 14, in send_password_reset_email
+    send_mail("[Microblog] Reset your Password",
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        sender=app.config["MAIL_USERNAME"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        recipients=[user.email],
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        text_body=render_template('email/reset_password.txt',user=user,token=token),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        html_body=render_template('email/reset_password.html',user=user, token=token))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\email.py", line 9, in send_mail
+    mail.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 539, in send
+    with self.connect() as connection:
+         ~~~~~~~~~~~~^^
+  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 127, in __enter__
+    self.host = self.configure_host()
+                ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 144, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+  File "C:\Python\Lib\smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+                  ~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Python\Lib\smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                    self.source_address)
+                                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "C:\Python\Lib\socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-06-30 15:08:58,049 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:45]
+2025-06-30 15:09:04,536 ERROR: Exception on /reset_password_request [POST] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 176, in reset_password_request
+    send_password_reset_email(user)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\LP\microblog\app\email.py", line 14, in send_password_reset_email
+    send_mail("[Microblog] Reset your Password",
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        sender=app.config["MAIL_USERNAME"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        recipients=[user.email],
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        text_body=render_template('email/reset_password.txt',user=user,token=token),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        html_body=render_template('email/reset_password.html',user=user, token=token))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\email.py", line 9, in send_mail
+    mail.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 539, in send
+    with self.connect() as connection:
+         ~~~~~~~~~~~~^^
+  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 127, in __enter__
+    self.host = self.configure_host()
+                ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 144, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+  File "C:\Python\Lib\smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+                  ~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Python\Lib\smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                    self.source_address)
+                                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "C:\Python\Lib\socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-06-30 15:09:57,814 ERROR: Exception on /reset_password_request [POST] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\routes.py", line 176, in reset_password_request
+    send_password_reset_email(user)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\LP\microblog\app\email.py", line 14, in send_password_reset_email
+    send_mail("[Microblog] Reset your Password",
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        sender=app.config["MAIL_USERNAME"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        recipients=[user.email],
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        text_body=render_template('email/reset_password.txt',user=user,token=token),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        html_body=render_template('email/reset_password.html',user=user, token=token))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\email.py", line 9, in send_mail
+    mail.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 539, in send
+    with self.connect() as connection:
+         ~~~~~~~~~~~~^^
+  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 127, in __enter__
+    self.host = self.configure_host()
+                ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python\Lib\site-packages\flask_mail\__init__.py", line 144, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+  File "C:\Python\Lib\smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+                  ~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Python\Lib\smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                    self.source_address)
+                                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "C:\Python\Lib\socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-06-30 15:11:43,132 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:45]

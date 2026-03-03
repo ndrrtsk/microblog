@@ -1,0 +1,66 @@
+2025-07-14 23:39:58,547 ERROR: Exception on / [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "C:\LP\microblog\app\main\routes.py", line 17, in before_request
+    db.session.commit()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python\Lib\site-packages\sqlalchemy\orm\scoping.py", line 599, in commit
+    return self._proxied.commit()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python\Lib\site-packages\sqlalchemy\orm\session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "C:\Python\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Python\Lib\site-packages\sqlalchemy\orm\session.py", line 1323, in commit
+    self.session.dispatch.after_commit(self.session)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Python\Lib\site-packages\sqlalchemy\event\attr.py", line 378, in __call__
+    fn(*args, **kw)
+    ~~^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\models.py", line 145, in <lambda>
+    db.event.listen(db.session, 'after_commit',lambda session: SearchableMixin.after_commit(session))
+                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+TypeError: SearchableMixin.after_commit() missing 1 required positional argument: 'session'
+2025-07-14 23:41:32,800 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:81]
+2025-07-14 23:41:34,242 ERROR: Exception on / [GET] [in C:\Python\Lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python\Lib\site-packages\flask\app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "C:\Python\Lib\site-packages\flask\app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "C:\LP\microblog\app\main\routes.py", line 17, in before_request
+    db.session.commit()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python\Lib\site-packages\sqlalchemy\orm\scoping.py", line 599, in commit
+    return self._proxied.commit()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python\Lib\site-packages\sqlalchemy\orm\session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "C:\Python\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Python\Lib\site-packages\sqlalchemy\orm\session.py", line 1323, in commit
+    self.session.dispatch.after_commit(self.session)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Python\Lib\site-packages\sqlalchemy\event\attr.py", line 378, in __call__
+    fn(*args, **kw)
+    ~~^^^^^^^^^^^^^
+  File "C:\LP\microblog\app\models.py", line 145, in <lambda>
+    db.event.listen(db.session, 'after_commit',lambda session: SearchableMixin.after_commit.__func__(SearchableMixin,session))
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'function' object has no attribute '__func__'. Did you mean: '__doc__'?
+2025-07-14 23:43:07,961 INFO: Microblog startup [in C:\LP\microblog\app\__init__.py:81]
